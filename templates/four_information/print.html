@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    席替え結果{{ date }}月
+{% endblock %}
+
+{% block content %}
+    <div class="print_page">
+        <a href="{% url 'Main' %}" style="color: black; text-decoration: none"><p class="title">令和3年度4i座席表
+            ({{ date }}月)</p></a>
+        <link rel="stylesheet" href="{% static 'style_print.css' %}">
+        <script src="{% static 'script_result.js' %}"></script>
+        <div class="teacher"><p>教卓</p></div>
+        <ul>
+            <div class="item white">
+                <li class="rubi"></li>
+                <li></li>
+            </div>
+
+            {% for name in object_list %}
+                <div class="item">
+                    <li class="rubi">{{ name.h_name.rubi }}</li>
+                    <li class="name">{{ name.h_name.student_number }} {{ name.h_name.last_name }} {{ name.h_name.first_name }}</li>
+                </div>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

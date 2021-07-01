@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    DACSAへようこそ！
+{% endblock %}
+
+{% block content %}
+    <div class="login">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">Login</div>
+                        <div class="card-body">
+                            {% if form.errors %}
+                                <p>あなたのユーザー名もしくはパスワードが一致しませんでした．もう一度お試しください．</p>
+                            {% endif %}
+
+                            {% if next %}
+                                {% if user.is_authenticated %}
+                                    <p>
+                                        あなたのアカウントはこのページへのアクセス権がありません．
+                                        アクセス権限のある，アカウントでログインしてください．
+                                        お困りの場合は，サイト管理者までお問い合わせください．
+                                    </p>
+                                {% else %}
+                                    <p>このサイトを表示するにはログインをしてください．</p>
+                                {% endif %}
+                            {% endif %}
+
+                            <form method="post" action="{% url 'login' %}">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    {{ form.username.label_tag }}
+                                    <div class="col-md-6">
+                                        {{ form.username }}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    {{ form.password.label_tag }}
+                                    <div class="col-md-6">
+                                        {{ form.password }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="submit" value="ログイン" class="btn btn-primary">
+                                    <input type="hidden" name="next" value="{{ next }}">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

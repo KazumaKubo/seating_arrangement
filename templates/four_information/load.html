@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    席替え中...
+{% endblock %}
+
+{% block content %}
+    {% if txt %}
+        <div style="width: 50%; height: 70%; margin: 15% auto">
+            <p style="font-size: 3em">3秒後にトップページへ自動で遷移します．</p>
+            <p>移動できないときは<a href="{% url 'Main' %}">こちら</a>をクリックしてください．</p>
+        </div>
+        <script>
+            alert("Warning: 席替えの人数と席数が一致しない為\n" +
+                "                 席替えを実行できませんでした．")
+            setTimeout("link()", 3000)
+
+            function link() {
+                location.href = '{% url 'Main' %}';
+            }
+        </script>
+
+    {% else %}
+        <div style="width: 1em; height: 60%; margin: 13% auto">
+           <div class="timer" id="timer" style="font-size: 10em"></div>
+        </div>
+        <p>座席数: {{ seat }}</p>
+        <p>席替え人数: {{ num }}</p>
+         <script src="{% static 'script_load.js' %}">
+         </script>
+        <script>
+        setTimeout("result_link()", 5000)
+        function result_link() {
+                location.href = '{% url 'Result' %}'
+            }
+        </script>
+    {% endif %}
+{% endblock %}

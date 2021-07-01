@@ -1,0 +1,60 @@
+ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    flex-direction: column;
+    height: 900px;
+    justify-content: end;
+    -webkit-justify-content: flex-end;
+    align-items: center;
+}
+
+.item {
+    border: black solid 1px;
+    width: 13%;
+    height: 12%;
+    margin: 10px;
+}
+
+li {
+    font-size: 30px;
+    text-align: center;
+    padding: 10px;
+}
+
+.white {
+    border: none;
+}
+
+.white > .rubi {
+    border: none;
+}
+
+.teacher {
+    border: black solid 1px;
+    width: 5em;
+    margin: 30px auto;
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+
+}
+
+small {
+    font-size: 20px;
+}
+
+p {
+    width: 20%;
+    margin: 10px 95% 10px 5%;
+}
+
+.title {
+    width: 13em;
+    margin: 10px auto;
+    font-size: 2em;
+}
+
+.pic1 {
+    margin: 10px 85% 10px 5%;
+}

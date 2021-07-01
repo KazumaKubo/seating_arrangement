@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    席替えプログラム！
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'top.css' %}">
+    <a href="{% url 'logout' %}" class="logout btn btn-outline-success">logout</a>
+    <div class="all">
+        <div class="item item1">
+            <h2>席替えの実行</h2>
+            <a href="{% url 'Arrange' %}" class="go btn btn-outline-success">Run!!!</a>
+        </div>
+        <div class="item item2">
+            <h2>結果を表示</h2>
+            <a href="{% url 'Result' %}" class="go btn btn-outline-primary">Result!!</a>
+            {% for h in history %}
+                <a href="{% url 'SeatHistory' pk=h.save_date.month %}"><p>{{ h.save_date | date:"Y/m/d (D)" }}</p></a>
+            {% endfor %}
+        </div>
+        <div class="item">
+            <h2>抽選優先席の表示</h2>
+            <a href="{% url 'Priority' %}" class="btn btn-outline-info btn go">表示する</a>
+        </div>
+        <div class="item">
+            <h3>学生の抽選優先度の表示</h3>
+            <a href="{% url 'Weight' %}" class="btn-outline-dark btn go"><p>表示する</p></a>
+        </div>
+        <div class="item item3">
+            <h2>結果を印刷</h2>
+            {% for h in print %}
+                <a href="{% url 'PrintSeat' pk=h.save_date.month %}" class="btn-outline-dark btn"><p>{{ h.save_date | date:'Y/m/d (D)' }}</p></a>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

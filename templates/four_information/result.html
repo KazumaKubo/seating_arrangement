@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    席替え結果!!
+{% endblock %}
+
+{% block content %}
+    <p class="title">令和3年度4i座席表 ({{ date.month }}月)</p>
+    <link rel="stylesheet" href="{% static 'style_result.css' %}">
+    <script src="{% static 'script_result.js' %}"></script>
+    <div class="teacher">教卓</div>
+    <ul>
+        <div class="item white" >
+            <li class="rubi"></li>
+            <li></li>
+        </div>
+
+        {% for name in object_list %}
+
+            <div class="item">
+                <li class="rubi">{{ name.name.rubi }}</li>
+                <li>{{ name.name.student_number }} {{ name.name.last_name }} {{ name.name.first_name }}</li>
+            </div>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{% url 'Main' %}" >Return to Top</a></p>
+    <p><a href="{% url 'SaveDB' %}">Save to DB</a></p>
+    <p style="color: red">Warnings: DBに同月席替えデータが２つ存在すると<br>エラーが発生するので注意すること</p>
+{% endblock %}

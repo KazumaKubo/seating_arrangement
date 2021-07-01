@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    抽選優先度
+{% endblock %}
+
+{% block content %}
+    <p class="title">令和3年度4i座席 抽選優先度</p>
+    <link rel="stylesheet" href="{% static 'zone.css' %}">
+    <script src="{% static 'script_result.js' %}"></script>
+    <div class="teacher">教卓</div>
+    <ul>
+        <div class="item white">
+            <li class="rubi"></li>
+            <li></li>
+        </div>
+
+        {% for column in column_list %}
+            {% for key, value in column.items %}
+                <div class="item">
+                    <li>優先度:{{ value }}<br>ウェイト:{{ key }}</li>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endblock %}
