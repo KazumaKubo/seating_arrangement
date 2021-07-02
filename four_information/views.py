@@ -225,8 +225,9 @@ class SeatHistoryView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['object_list'] = SeatHistory.objects.filter(save_date__month=self.kwargs['pk'] + 1)
-        context['date'] = self.kwargs['pk'] + 1
+        context['object_list'] = SeatHistory.objects.filter(save_date__month=self.kwargs['pk']).order_by(
+            'seat_number__seat_number')
+        context['date'] = self.kwargs['pk']
         context['print'] = self.kwargs['pk']
         return context
 
@@ -252,8 +253,9 @@ class PrintSeat(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['object_list'] = SeatHistory.objects.filter(save_date__month=self.kwargs['pk'] + 1)
-        context['date'] = self.kwargs['pk'] + 1
+        context['object_list'] = SeatHistory.objects.filter(save_date__month=self.kwargs['pk']).order_by(
+            'seat_number__seat_number')
+        context['date'] = self.kwargs['pk']
         return context
 
 
